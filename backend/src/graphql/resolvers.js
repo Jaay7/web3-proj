@@ -33,7 +33,8 @@ const resolvers = {
     },
     getAllTransactions: async (root, args, { req }) => {
       const authUser = await getAuthUser(req, true);
-      return Transactions.find({ sender: authUser.id });
+      // return the sorted based on dateTime
+      return Transactions.find({ sender: authUser.id }).sort({ dateTime: -1 });
     },
     getTransaction: async (root, args, { req }) => {
       await getAuthUser(req, true);
@@ -114,6 +115,7 @@ const resolvers = {
         receiver: receiver.id,
         amount: args.amount,
         message: args.message,
+        dateTime: args.dateTime,
       });
       return 'Transaction added successfully';
     },

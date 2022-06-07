@@ -64,6 +64,7 @@ const typeDefs = gql`
       receiver: ID!
       amount: Float!
       message: String!
+      dateTime: String!
     ): String
   }
 `;
